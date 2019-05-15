@@ -15,12 +15,13 @@ class CharacterListView extends React.Component {
   }
 
   render() {
+    console.log(this.props, 'clv props')
     if (this.props.fetching) {
-      <h2>Fetching characters...</h2>;
+      return <h2>Fetching characters...</h2>;
     }
     return (
       <div className="CharactersList_wrapper">
-        <CharacterList characters={this.props.characters} />
+        { this.props.characters && <CharacterList characters={this.props.characters} />}
       </div>
     );
   }
@@ -28,11 +29,18 @@ class CharacterListView extends React.Component {
 
 // our mapStateToProps needs to have two properties inherited from state
 // the characters and the fetching boolean
-const mapStateToProps = state => ({
-  characters: state.charaters,
-  error: state.error,
-  fetching: state.fetching
-})
+
+const mapStateToProps = state => {
+  console.log(state.charsReducer.characters, 'clv test')
+  return {
+  characters: state.charsReducer.characters,
+  error: state.charsReducer.error,
+  fetching: state.charsReducer.fetching
+  }
+}
+// const mapStateToProps = state => {
+//   console.log(state)
+// }
 
 export default connect(
   mapStateToProps,

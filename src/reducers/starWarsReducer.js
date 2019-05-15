@@ -21,11 +21,12 @@ export const charsReducer = (state = initialState, action) => {
     };
 
     case FETCHING_CHARACTERS_SUCCESS: 
+      console.log(action, 'dsfkjads')
       return {
         ...state,
         fetching: false,
         error: '',
-        characters: [...state.characters, ...action.payload]
+        characters: action.payload
       };
 
     case FETCHING_CHARACTERS_FAILURE:
